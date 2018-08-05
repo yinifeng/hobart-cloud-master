@@ -1,0 +1,15 @@
+server:
+  port: 31010
+  
+spring:
+  application:
+    name: hobart-test-apollo
+    
+mybatis:
+  #config-location: classpath:mybatis/mybatis.cfg.xml    # mybatis配置文件所在路劲
+  type-aliases-package: com.hubo.apollo.model           # 所有Entity别名类所在的包
+  mapper-locations:
+  - classpath:mybatis/mapper/**/*.xml                   # mapper映射文件
+  
+logging:
+  file: /app/logs/hobart-test-apollo.log

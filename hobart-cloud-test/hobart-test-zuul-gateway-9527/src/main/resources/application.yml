@@ -1,0 +1,33 @@
+server:
+  port: 9527
+  
+spring:
+  application:
+    name: hobart-zuul-gateway
+    
+eureka:
+  client:   # 客户端注册进Eureka服务列表内
+    service-url:
+      #defaultZone: http://localhost:7001/eureka/     # 单机配置
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/     # 集群配置
+  instance:
+    instance-id: gateway-9527.com   # 注册服务列表的别名
+    prefer-ip-address: true             # 访问路劲可以显示IP地址
+    
+zuul:
+  prefix: /hobart     # 所有微服务加前缀才能访问
+  #ignored-services: hobart-test-dept      # 忽略真实的访问名，否则下面两个路劲都能访问
+  ignored-services: "*"      # 忽略所有真实访问名
+  routes:
+    mydept.serviceId: hobart-test-dept   # 某个服务的名称
+    mydept.path: /mydept/**     # 上面微服务名称映射到这个名称
+    
+ribbon: 
+  ReadTimeout: 60000  
+  ConnectTimeout: 60000 
+    
+info:       # 服务列表服务信息
+  app.name: hubo-hobartcloud
+  company.name: www.hubo.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
