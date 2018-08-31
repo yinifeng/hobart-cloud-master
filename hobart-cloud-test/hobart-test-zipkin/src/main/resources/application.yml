@@ -1,0 +1,64 @@
+server:
+  port: 8020
+spring:
+#  profiles:
+#    active: dev
+  application:
+    name: zipkin
+#  boot:
+#    admin:
+#      username: ${security.user.name:admin}
+#      password: ${security.user.password:admin}
+#  redis:
+#    host: ${spring.redis.host:paascloud-db-redis}
+#    password: ${spring.redis.password:123456}
+#    port: ${spring.redis.port:6379}
+#    timeout: ${spring.redis.timeout:0}
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/zipkin?characterEncoding=utf8&useSSL=false
+    username: root
+    password: 123456
+    filters: stat,wall
+    druid:
+      initial-size: 10
+      min-idle: 10
+      max-active: 30
+      test-on-borrow: true
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      web-stat-filter:
+        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+      stat-view-servlet:
+        allow:
+        login-username: admin
+        login-password: admin
+  rabbitmq: 
+    port: 5672
+    username: hubo
+    password: 123456
+    host: 192.168.123.102
+#    addresses: '10.186.55.7:31001,10.186.55.8:31001,10.186.55.9:31001'
+  sleuth:
+    enabled: false
+  zipkin:
+    locator:
+      discovery:
+        enabled: true
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  instance:
+    instance-id: zipkin-8020.com   # 注册服务列表的别名
+    prefer-ip-address: true             # 访问路劲可以显示IP地址
+zipkin:
+  storage:
+    type: mysql
+management:
+  security:
+    enabled: false
+#logging:
+#  level.root: info
+#  path: /applog/
+#  file: ${spring.application.name}.log

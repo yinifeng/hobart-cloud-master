@@ -9,7 +9,7 @@
   <packaging>pom</packaging>
   <description>hobart微服务测试</description>
   <modules>
-  	<module>hobart-test-base</module>
+  	<!--<module>hobart-test-base</module>-->
   	<module>hobart-test-provider-dept</module>
   	<module>hobart-test-consumer-dept</module>
   	<module>hobart-test-eureka-7001</module>
@@ -25,6 +25,7 @@
   	<module>hobart-provider-user</module>
   	<module>hobart-provider-shop</module>
   	<module>hobart-gateway</module>
+	  <module>hobart-test-zipkin</module>
   </modules>
   
   <!-- 当前Module需要用到的jar包，按自己需求添加，

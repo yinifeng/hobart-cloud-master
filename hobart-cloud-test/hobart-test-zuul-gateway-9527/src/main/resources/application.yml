@@ -4,6 +4,14 @@ server:
 spring:
   application:
     name: hobart-zuul-gateway
+  sleuth: 
+    sampler: 
+      percentage: 0.1
+  rabbitmq: 
+    port: 5672
+    username: hubo
+    password: 123456
+    host: 192.168.123.102
     
 eureka:
   client:   # 客户端注册进Eureka服务列表内
@@ -25,6 +33,10 @@ zuul:
 ribbon: 
   ReadTimeout: 60000  
   ConnectTimeout: 60000 
+  
+#spring.sleuth.sampler.percentage=1.0  
+#spring.zipkin.base-url=${zipkin.url}  
+
     
 info:       # 服务列表服务信息
   app.name: hubo-hobartcloud
